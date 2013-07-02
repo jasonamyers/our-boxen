@@ -30,3 +30,16 @@ github "sudo",       "1.0.0"
 
 # Optional/custom modules. There are tons available at
 # https://github.com/boxen.
+github "chrome",        "1.0.0"
+github "sublime_text_2","1.0.0"
+github "iterm2",        "1.0.0" 
+github "heroku",        "1.0.0"
+github "dropbox",       "1.0.0"
+github "caffeine",      "1.0.0"
+github "postgresql",    "1.0.0"
+github "sysctl",        "1.0.0"
+github "firefox",       "1.0.1"
+github "mou",           "1.0.0", :repo => "jasonamyers/puppet-mou"
+github "evernote",      "2.0.3", :repo => "jasonamyers/puppet-evernote"
+github "libreoffice",   "4.0.4", :repo => "jasonamyers/puppet-libreoffice"
+github "postbox",       "1.0.0", :repo => "jasonamyers/puppet-postbox"
