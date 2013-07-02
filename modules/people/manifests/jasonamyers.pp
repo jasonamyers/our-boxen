@@ -5,7 +5,6 @@ class people::jasonamyers {
   include iterm2::dev
   include postgresql
   include dropbox
-  include wedge
   include mou
   include evernote
   include libreoffice
