@@ -50,7 +50,11 @@ class people::jasonamyers {
         'cmake',
         'pkg-config',
         'readline',
-        'python'
+        'python',
+        'postgis',
+        'geos',
+        'proj',
+        'gdal'
       ]:
   }
   
@@ -92,6 +96,10 @@ class people::jasonamyers {
 
   exec { 'pipinstallipython':
     command => 'pip install ipython'
+  }
+
+  exec { 'pipinstallnumpy':
+    command => 'pip install numpy'
   }
 
   exec { 'dotfilessubmodules':
