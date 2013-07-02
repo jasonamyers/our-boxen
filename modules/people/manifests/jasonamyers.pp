@@ -6,7 +6,7 @@ class people::jasonamyers {
   include postgresql
   include dropbox
   include mou
-  include evernote
+  /*include evernote*/
   include libreoffice
   include postbox
 
