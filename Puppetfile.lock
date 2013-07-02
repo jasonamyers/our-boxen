@@ -89,11 +89,6 @@ GITHUBTARBALL
     inifile (0.9.0)
 
 GITHUBTARBALL
-  remote: jasonamyers/puppet-evernote
-  specs:
-    evernote (2.0.3)
-
-GITHUBTARBALL
   remote: jasonamyers/puppet-libreoffice
   specs:
     libreoffice (4.0.4)
@@ -119,7 +114,6 @@ DEPENDENCIES
   chrome (= 1.0.0)
   dnsmasq (= 1.0.0)
   dropbox (= 1.0.0)
-  evernote (= 2.0.3)
   firefox (= 1.0.1)
   gcc (= 1.0.0)
   git (= 1.2.2)
