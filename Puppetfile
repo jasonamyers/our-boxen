@@ -46,3 +46,5 @@ github "evernote",      "2.0.3", :repo => "jasonamyers/puppet-evernote"
 github "libreoffice",   "4.0.4", :repo => "jasonamyers/puppet-libreoffice"
 github "postbox",       "3.0.8", :repo => "jasonamyers/puppet-postbox"
 github "spectacle",     "1.0.0", :repo => "jasonamyers/puppet-spectacle"
+mod "property_list_key",  "0.1.0",   :github_tarball => "glarizza/puppet-property_list_key"
+

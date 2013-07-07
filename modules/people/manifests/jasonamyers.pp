@@ -13,16 +13,14 @@ notify { 'class people::jasonamyers declared': }
   include postbox
   include spectacle
 
-  git::config::global { 'user.email':
-    value => 'jason@jasonamyers.com'
-  }
-
-  git::config::global { 'user.name':
-    value => 'Jason Myers'
-  }
-
-  git::config::global { 'push.default':
-    value => 'current'
+  git::config::global {
+    'user.email': value => 'jason@jasonamyers.com';
+    'user.name': value => 'Jason Myers';
+    'push.default': value => 'current';
+    'color.ui': value => 'auto';
+    'core.autocrlf': value => 'input';
+    'alias.lg': value => "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all";
+    'alias.pu': value => 'git fetch origin -v; git fetch upstream -v; git merge upstream/master';
   }
 
   $home     = "/Users/${::luser}"
@@ -140,5 +138,70 @@ notify { 'class people::jasonamyers declared': }
     path    => '/etc/shells',
     line    => "${boxen::config::homebrewdir}/bin/zsh",
     require => Package['zsh'],
+  }
+
+ # Disable Gatekeeper so you can install any package you want
+  property_list_key { 'Disable Gatekeeper':
+    ensure => present,
+    path   => '/var/db/SystemPolicy-prefs.plist',
+    key    => 'enabled',
+    value  => 'no',
+  }
+
+  $my_homedir = "/Users/${::luser}"
+
+  # NOTE: Dock prefs only take effect when you restart the dock
+  property_list_key { 'Hide the dock':
+    ensure     => present,
+    path       => "${my_homedir}/Library/Preferences/com.apple.dock.plist",
+    key        => 'autohide',
+    value      => true,
+    value_type => 'boolean',
+    notify     => Exec['Restart the Dock'],
+  }
+
+  property_list_key { 'Align the Dock Left':
+    ensure     => present,
+    path       => "${my_homedir}/Library/Preferences/com.apple.dock.plist",
+    key        => 'orientation',
+    value      => 'left',
+    notify     => Exec['Restart the Dock'],
+  }
+
+  property_list_key { 'Lower Right Hotcorner - Screen Saver':
+    ensure     => present,
+    path       => "${my_homedir}/Library/Preferences/com.apple.dock.plist",
+    key        => 'wvous-br-corner',
+    value      => 10,
+    value_type => 'integer',
+    notify     => Exec['Restart the Dock'],
+  }
+
+  property_list_key { 'Lower Right Hotcorner - Screen Saver - modifier':
+    ensure     => present,
+    path       => "${my_homedir}/Library/Preferences/com.apple.dock.plist",
+    key        => 'wvous-br-modifier',
+    value      => 0,
+    value_type => 'integer',
+    notify     => Exec['Restart the Dock'],
+  }
+
+  exec { 'Restart the Dock':
+    command     => '/usr/bin/killall -HUP Dock',
+    refreshonly => true,
+  }
+
+  file { 'Dock Plist':
+    ensure  => file,
+    require => [
+                 Property_list_key['Lower Right Hotcorner - Screen Saver - modifier'],
+                 Property_list_key['Hide the dock'],
+                 Property_list_key['Align the Dock Left'],
+                 Property_list_key['Lower Right Hotcorner - Screen Saver'],
+                 Property_list_key['Lower Right Hotcorner - Screen Saver - modifier'],
+               ],
+    path    => "${my_homedir}/Library/Preferences/com.apple.dock.plist",
+    mode    => '0600',
+    notify     => Exec['Restart the Dock'],
   }
 }

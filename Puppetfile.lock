@@ -99,6 +99,11 @@ GITHUBTARBALL
     inifile (0.9.0)
 
 GITHUBTARBALL
+  remote: glarizza/puppet-property_list_key
+  specs:
+    property_list_key (0.1.0)
+
+GITHUBTARBALL
   remote: jasonamyers/puppet-evernote
   specs:
     evernote (2.0.3)
@@ -149,6 +154,7 @@ DEPENDENCIES
   osx (= 1.4.0)
   postbox (= 3.0.8)
   postgresql (= 1.0.0)
+  property_list_key (= 0.1.0)
   repository (= 2.0.2)
   spectacle (= 1.0.0)
   stdlib (= 4.0.2)
