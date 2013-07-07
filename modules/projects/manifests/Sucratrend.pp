@@ -1,3 +1,5 @@
-boxen::project { 'Sucratrend':
-    source => 'jasonamyers/Sucratrend'
+class projects::Sucratrend {
+    boxen::project { 'Sucratrend':
+        source => 'jasonamyers/Sucratrend'
+    }
 }
