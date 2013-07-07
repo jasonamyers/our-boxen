@@ -11,6 +11,7 @@ notify { 'class people::jasonamyers declared': }
   include evernote
   include libreoffice
   include postbox
+  include spectacle
 
   git::config::global { 'user.email':
     value => 'jason@jasonamyers.com'
