@@ -1,5 +1,6 @@
 class people::jasonamyers {
 notify { 'class people::jasonamyers declared': }
+  include alfred
   include sysctl
   include chrome
   include sublime_text_2
@@ -48,7 +49,6 @@ notify { 'class people::jasonamyers declared': }
         'tree',
         'sqlite',
         'gdbm',
-        'zsh',
         'cmake',
         'pkg-config',
         'readline',
@@ -83,6 +83,21 @@ notify { 'class people::jasonamyers declared': }
   file { "${home}/.zshrc":
     ensure => 'link',
     target => "${dotfiles}/zshrc",
+  }
+
+  file { "${home}/.zsh":
+    ensure => 'link',
+    target => "${dotfiles}/zsh",
+  }
+
+  file { "${home}/.oh-my-zsh":
+    ensure => 'link',
+    target => "${dotfiles}/oh-my-zsh",
+  }
+
+  file { "${home}/.virtualenv":
+    ensure => 'link',
+    target => "${dotfiles}/virtualenv",
   }
 
   /*exec { 'dotfiles':*/
