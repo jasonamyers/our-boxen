@@ -1,5 +1,5 @@
-class projects::Sucratrend-Droid {
-    boxen::project { 'Sucratrend-Droid':
+class projects::sucratrend-droid {
+    boxen::project { 'sucratrend-droid':
         source => 'jasonamyers/Sucratrend-Droid'
     }
 }
