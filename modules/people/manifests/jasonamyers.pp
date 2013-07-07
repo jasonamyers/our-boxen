@@ -78,6 +78,11 @@ class people::jasonamyers {
     target => "${dotfiles}/vimrc",
   }
 
+  file { "${home}/.zshrc":
+    ensure => 'link',
+    target => "${dotfiles}/zshrc",
+  }
+
   /*exec { 'dotfiles':*/
     /*command => 'cd ~/my/dotfiles && ./bootstrap.sh'*/
   /*}*/
