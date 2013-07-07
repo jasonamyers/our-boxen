@@ -1,4 +1,5 @@
 class people::jasonamyers {
+notify { 'class people::jasonamyers declared': }
   include sysctl
   include chrome
   include sublime_text_2
@@ -6,7 +7,7 @@ class people::jasonamyers {
   include postgresql
   include dropbox
   include mou
-  /*include evernote*/
+  include evernote
   include libreoffice
   include postbox
 
@@ -47,6 +48,7 @@ class people::jasonamyers {
         'tree',
         'sqlite',
         'gdbm',
+        'zsh',
         'cmake',
         'pkg-config',
         'readline',
@@ -109,5 +111,18 @@ class people::jasonamyers {
 
   exec { 'dotfilessubmodules':
     command => 'cd /Users/jasonamyers/my/dotfiles && git submodule init && git submodule update'
+  }
+
+  # Changes the default shell to the zsh version we get from Homebrew
+  # Uses the osx_chsh type out of boxen/puppet-osx
+  osx_chsh { $::luser:
+    shell   => '/opt/boxen/homebrew/bin/zsh',
+    require => Package['zsh'],
+  }
+
+  file_line { 'add zsh to /etc/shells':
+    path    => '/etc/shells',
+    line    => "${boxen::config::homebrewdir}/bin/zsh",
+    require => Package['zsh'],
   }
 }
